@@ -1,5 +1,6 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
+require("@nomiclabs/hardhat-ethers")
 require("hardhat-deploy")
 
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL;
@@ -19,12 +20,11 @@ module.exports = {
       },
     ],
   },
-  defaultNetwork: "localhost",
+  defaultNetwork: "locahost",
   networks: {
-    localhost: {
+    locahost: {
       chainId: 31337,
-      url: "http://127.0.0.1:8545"
-      // gasPrice: 130000000000,
+      url: 'http://127.0.0.1:8545'
     },
     sepolia: {
       url: SEPOLIA_RPC_URL,
