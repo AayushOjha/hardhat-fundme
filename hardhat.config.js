@@ -1,7 +1,7 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
-require("@nomiclabs/hardhat-ethers")
-require("hardhat-deploy")
+require("@nomiclabs/hardhat-ethers");
+require("hardhat-deploy");
 
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL;
 const PRIVATE_KEY = process.env.TEST_WALLET;
@@ -24,13 +24,18 @@ module.exports = {
   networks: {
     locahost: {
       chainId: 31337,
-      url: 'http://127.0.0.1:8545'
+      url: "http://127.0.0.1:8545",
     },
     sepolia: {
       url: SEPOLIA_RPC_URL,
       accounts: [PRIVATE_KEY],
       chainId: 11155111,
       blockConfirmations: 6,
+    },
+  },
+  namedAccounts: {
+    deployer: {
+      default: 0,
     },
   },
   etherscan: {
