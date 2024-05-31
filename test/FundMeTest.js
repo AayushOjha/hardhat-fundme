@@ -55,10 +55,11 @@ describe("FundMe", function (){
 
             // act
             const transactionResponse = await fundMe.withdraw()
-            const transactionReceipt = transactionResponse.wait()
-            const {gasUsed, effectiveGasPrice} = transactionReceipt
+            const transactionReceipt = await transactionResponse.wait()
+            const {gasUsed, gasPrice} = transactionReceipt
 
-            const gasCost = gasUsed.mul(effectiveGasPrice)
+
+            const gasCost = gasUsed * gasPrice
 
             const endingContractBalance = await hre.ethers.provider.getBalance(fundMe.target)
             const endingDeployerBalance = await hre.ethers.provider.getBalance(deployer)
@@ -66,7 +67,7 @@ describe("FundMe", function (){
             // assert
 
             assert.equal(endingContractBalance, 0)
-            assert.equal(startingContractBalance.add(startingDeployerBalance), endingDeployerBalance.add(gasCost))
+            assert.equal(startingContractBalance + startingDeployerBalance, endingDeployerBalance + gasCost)
 
         })
     })

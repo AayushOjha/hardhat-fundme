@@ -3,9 +3,9 @@ const { networkConfig, developmentChains } = require("../utils/helper-hardhat-co
 const { verify } = require("../utils/verify")
 require("dotenv").config()
 
-module.exports = async ({ getUnnamedAccounts, deployments }) => {
+module.exports = async ({ getNamedAccounts, deployments }) => {
     const { deploy, log } = deployments
-    const deployer = (await getUnnamedAccounts())[0]
+    const deployer = (await getNamedAccounts()).deployer
     
     const chainId = network.config.chainId
 

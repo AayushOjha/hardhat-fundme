@@ -5,7 +5,7 @@ const DECIMALS = "8"
 const INITIAL_PRICE = "200000000000" // 2000
 module.exports = async (hre) => {
     const { deploy, log } = deployments
-    const deployer = (await hre.getUnnamedAccounts())[0]
+    const deployer = (await hre.getNamedAccounts()).deployer
     const chainId = network.config.chainId
 
     if (developmentChains.includes(chainId)) {
